@@ -34,7 +34,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Ruby
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        uses: ruby/setup-ruby@v1
         with:
           # ruby-version: '3.1' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
@@ -51,13 +51,11 @@ jobs:
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v2
 
-  # Deployment job
-  deploy:
-    name: 🚀 deploy
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-      publish_dir: ./_site
-      # if the repo you are deploying to is <username>.github.io, uncomment the line below.
-      # if you are including the line below, make sure your source files are NOT in the "main" branch:
-      # publish_branch: main
+      - name: 🚀 deploy
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./_site
+            # if the repo you are deploying to is <username>.github.io, uncomment the line below.
+            # if you are including the line below, make sure your source files are NOT in the "main" branch:
+            # publish_branch: main
